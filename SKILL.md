@@ -37,6 +37,16 @@ curl -H "X-API-Key: YOUR_API_KEY" \
 ### 2. Auth Token (Write Access)
 For posting, liking, following, DMs - requires Twitter `auth_token` cookie:
 
+**Write approval checklist:**
+- Show the exact account, action, target tweet or user, final text, and media
+  list before any write call.
+- Do not add unrequested links, mentions, hashtags, claims, or media.
+- Keep real `authToken`, `ct0`, passwords, proxies, and API keys out of prompts,
+  logs, screenshots, and committed examples.
+- Use environment variables or a local secret store for runnable scripts.
+- If a token appears in chat, an issue, a log, or a screenshot, treat it as
+  compromised and rotate it before reuse.
+
 **How to get authToken:**
 1. Log into twitter.com in your browser
 2. Open DevTools → Application → Cookies
@@ -493,7 +503,7 @@ async function retryRequest(fn, maxRetries = 3) {
 
 - **Telegram:** @tweetapi
 - **Email:** support@tweetapi.com
-- **Status:** https://status.tweetapi.com
+- **Status:** check the TweetAPI dashboard or support channel
 - **Pricing:** USD $1–$197/month (4 tiers)
 
 ## Legal

@@ -64,6 +64,27 @@ curl -X POST "https://api.tweetapi.com/tw-v2/interaction/create-post" \
   }'
 ```
 
+### Write Action Safety
+
+Before using any write endpoint, have the assistant show the exact account,
+action, target tweet or user, final text, and media list for approval. Do not
+let an agent invent hashtags, mentions, links, claims, or attachments that the
+user did not request.
+
+Keep real `authToken`, `ct0`, passwords, proxies, and API keys out of prompts,
+logs, screenshots, and committed examples. Prefer environment variables or a
+local secret store in runnable scripts:
+
+```bash
+curl -X POST "https://api.tweetapi.com/tw-v2/interaction/create-post" \
+  -H "X-API-Key: $TWEETAPI_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"authToken\":\"$TWEETAPI_AUTH_TOKEN\",\"text\":\"Approved post text\"}"
+```
+
+If a token appears in chat, an issue, a log, or a screenshot, treat it as
+compromised and rotate it before reuse.
+
 ## Documentation
 
 Full documentation is available in [SKILL.md](./SKILL.md), including:
@@ -99,7 +120,7 @@ Full documentation is available in [SKILL.md](./SKILL.md), including:
 
 - **Telegram:** @tweetapi
 - **Email:** support@tweetapi.com
-- **Status:** https://status.tweetapi.com
+- **Status:** check the TweetAPI dashboard or support channel
 - **Pricing:** USD $1–$197/month (4 tiers)
 
 ## Legal
@@ -115,8 +136,6 @@ When using TweetAPI:
 ## Related Skills
 
 - [solana-dev](https://github.com/metasal1/solana-dev-skill) - Solana blockchain development
-- [whale-wallet-analysis](https://github.com/metasal1/whale-wallet-analysis-skill) - Track crypto whale wallets
-- [social-signal-bot](https://github.com/metasal1/social-signal-bot-skill) - Social media monitoring
 
 ## License
 
